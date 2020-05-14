@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Error from "./Error";
 
-const Formulario = () => {
+const Formulario = ({ guardarBusquedaLetra }) => {
   const [busqueda, guardarBusqueda] = useState({
     artista: "",
     cancion: "",
@@ -24,11 +25,15 @@ const Formulario = () => {
       guardarError(true);
       return;
     }
+    guardarError(false);
     //pasa validacion
+    guardarBusquedaLetra(busqueda);
   };
 
   return (
     <div className="bg-info">
+      {error ? <Error /> : null}
+
       <div className="container">
         <div className="row">
           <form
